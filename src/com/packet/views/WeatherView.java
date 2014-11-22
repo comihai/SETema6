@@ -21,6 +21,8 @@ public class WeatherView extends JFrame implements IModelListener, IView{
     private JTextField mTemp = new JTextField(5);
     private JTextField mWind = new JTextField(5);
     private JButton randomUpdate = new JButton("Random Update");
+    String[] cities = new String[] {"Bucharest","Craiova","Brasov"};
+    private JComboBox<String> mCitiesList = new JComboBox<String>(cities);
 
     private IController mWeatherContr;
     private WeatherModel mModel;
@@ -37,18 +39,20 @@ public class WeatherView extends JFrame implements IModelListener, IView{
          */
         JPanel content = new JPanel();
         content.setLayout(new FlowLayout());
-        content.add(randomUpdate);;
+        content.add(mCitiesList);
+        content.add(randomUpdate);
         content.add(new JLabel("Temperature : "));
         content.add(mTemp);
         content.add(new JLabel("°C       Wind Speed : "));
         content.add(mWind);
         content.add(new JLabel("m/s"));
+        //content.setLayout(new BoxLayout(content,BoxLayout.Y_AXIS));
 
         // Finalize layout
         this.setContentPane(content);
         this.pack();
 
-        this.setTitle("Calculator");
+        this.setTitle("Weather Monitor");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 

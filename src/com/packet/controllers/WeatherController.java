@@ -7,6 +7,7 @@ import com.packet.model.WeatherModel;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by mihai on 11/22/2014.
@@ -26,6 +27,8 @@ public class WeatherController implements IController {
 
     private List<IView> mViews;
 
+    private Random randomGenerator = new Random();
+
     /**
      * Default constructor
      */
@@ -35,7 +38,13 @@ public class WeatherController implements IController {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        //check what action should be taken
+        if (e.getActionCommand().equals(ACTION_UPDATE)) {
+            try {
+                  makeOperation();
+            } catch (ClassCastException ec) {
+               notifyViews(true, ec.getMessage());
+            }
+        }
     }
 
     /**
@@ -76,14 +85,14 @@ public class WeatherController implements IController {
     /**
      * Update the current value for temperature and wind speed
      *
-     * @param temp      Value for temp
-     * @param windSpeed Value for wind speed
      */
-    private void makeOperation(String temp, String windSpeed) {
+    private void makeOperation() {
         if (mModel != null) {
             // Update the model
-            mModel.setTemp((temp));
-            mModel.setWindSpeed((windSpeed));
+            String temp = String.valueOf(randomGenerator.nextInt(40)+"."+randomGenerator.nextInt(9));
+            String windSpeed = String.valueOf(randomGenerator.nextInt(20)+"."+randomGenerator.nextInt(9));
+            mModel.setTemp(temp);
+            mModel.setWindSpeed(windSpeed);
 
         }
     }
