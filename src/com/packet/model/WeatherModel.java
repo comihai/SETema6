@@ -17,16 +17,16 @@ public class WeatherModel {
     public static final double INITIAL_TEMP = 20;
     public static final double INITIAL_WIND_SPEED = 1.5;
 
-    private double temp;
-    private double windSpeed;
+    private double mTemp;
+    private double mWindSpeed;
     private List<IModelListener> listeners;
 
     /**
      * Constructor without params
      */
     public WeatherModel() {
-        temp = INITIAL_TEMP;
-        windSpeed = INITIAL_WIND_SPEED;
+        mTemp = INITIAL_TEMP;
+        mWindSpeed = INITIAL_WIND_SPEED;
     }
 
     /**
@@ -63,7 +63,7 @@ public class WeatherModel {
      * @return
      */
     public String getTemp() {
-        return String.valueOf(temp);
+        return String.valueOf(mTemp);
     }
 
     /**
@@ -71,7 +71,8 @@ public class WeatherModel {
      * @param temp
      */
     public void setTemp(String temp) {
-        this.temp = Double.parseDouble(temp);
+        this.mTemp = Double.parseDouble(temp);
+        notifyListeners();
     }
 
     /**
@@ -79,7 +80,7 @@ public class WeatherModel {
      * @return
      */
     public String getWindSpeed() {
-        return String.valueOf(windSpeed);
+        return String.valueOf(mWindSpeed);
     }
 
     /**
@@ -87,7 +88,8 @@ public class WeatherModel {
      * @param windSpeed
      */
     public void setWindSpeed(String windSpeed) {
-        this.windSpeed = Double.parseDouble(windSpeed);
+        this.mWindSpeed = Double.parseDouble(windSpeed);
+        notifyListeners();
     }
 
 
