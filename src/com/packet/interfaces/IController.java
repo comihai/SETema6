@@ -9,6 +9,5 @@ import java.awt.event.ActionListener;
  */
 public interface IController extends ActionListener{
 
-    public static final String ACTION_UPDATE_TEMP = "UPDATE_TEMP";
-    public static final String ACTION_UPDATE_WINDSPEED = "UPDATE_WINDSPEED";
+    public static final String ACTION_UPDATE = "UPDATE";
 }
