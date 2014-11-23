@@ -19,6 +19,8 @@ public class WeatherModel {
 
     private double mTemp;
     private double mWindSpeed;
+    private double mTempReal;
+    private double mWindSpeedReal;
     private List<IModelListener> listeners;
 
     /**
@@ -27,6 +29,8 @@ public class WeatherModel {
     public WeatherModel() {
         mTemp = INITIAL_TEMP;
         mWindSpeed = INITIAL_WIND_SPEED;
+        mTempReal = 0;
+        mWindSpeedReal = 0;
     }
 
     /**
@@ -92,5 +96,37 @@ public class WeatherModel {
         notifyListeners();
     }
 
+    /**
+     * return the value of the real wind speed
+     * @return
+     */
+    public String getTempReal() {
+        return String.valueOf(mTempReal);
+    }
 
+    /**
+     * set the value of temperature
+     * @param mTempReal
+     */
+    public void setTempReal(String mTempReal) {
+        this.mTempReal = Double.parseDouble(mTempReal);
+        notifyListeners();
+    }
+
+    /**
+     * return the value of the real temperature
+     * @return
+     */
+    public String getWindSpeedReal() {
+        return String.valueOf(mWindSpeedReal);
+    }
+
+    /**
+     * set the value of wind speed
+     * @param mWindSpeedReal
+     */
+    public void setWindSpeedReal(String mWindSpeedReal) {
+        this.mWindSpeedReal = Double.parseDouble(mWindSpeedReal);
+        notifyListeners();
+    }
 }

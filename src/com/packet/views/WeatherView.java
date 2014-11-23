@@ -27,7 +27,6 @@ public class WeatherView extends JFrame implements IModelListener, IView{
     String[] cities = new String[] {"Bucharest","Craiova","Brasov"};
     private JComboBox<String> mCitiesList = new JComboBox<String>(cities);
 
-    private IController mWeatherContr;
     private WeatherModel mModel;
 
     /**
@@ -38,7 +37,7 @@ public class WeatherView extends JFrame implements IModelListener, IView{
         mWind.setEditable(false);
         mTempReal.setEditable(false);
         mWindReal.setEditable(false);
-
+        this.setResizable(false);
         /**
          * Layout the components
          */
@@ -78,6 +77,8 @@ public class WeatherView extends JFrame implements IModelListener, IView{
         mModel = model;
         mTemp.setText(model.getTemp());
         mWind.setText(model.getWindSpeed());
+        mTempReal.setText(model.getTempReal());
+        mWindReal.setText(model.getWindSpeedReal());
     }
 
     /**
@@ -87,14 +88,22 @@ public class WeatherView extends JFrame implements IModelListener, IView{
      */
     public void addController(IController controller)
     {
-        randomUpdate.setActionCommand(IController.ACTION_UPDATE);
+        randomUpdate.setActionCommand(IController.ACTION_UPDATE_RANDOM);
         randomUpdate.addActionListener(controller);
+
+        realUpdate.setActionCommand(IController.ACTION_UPDATE_REAL);
+        realUpdate.addActionListener(controller);
+
+        mCitiesList.setActionCommand(IController.ACTION_UPDATE_CITY);
+        mCitiesList.addActionListener(controller);
     }
 
     @Override
     public void onUpdate() {
         mTemp.setText(mModel.getTemp());
         mWind.setText(mModel.getWindSpeed());
+        mTempReal.setText(mModel.getTempReal());
+        mWindReal.setText(mModel.getWindSpeedReal());
     }
 
     @Override
@@ -107,5 +116,9 @@ public class WeatherView extends JFrame implements IModelListener, IView{
         {
             JOptionPane.showMessageDialog(this, message, "Weather MVC", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+    @Override
+    public void setResizable(boolean resizable) {
+        super.setResizable(resizable);
     }
 }
