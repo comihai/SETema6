@@ -24,7 +24,7 @@ public class WeatherView extends JFrame implements IModelListener, IView {
     private JTextField mWindReal = new JTextField(5);
     private JButton randomUpdate = new JButton("Random Update");
     private JButton realUpdate = new JButton("Real Update");
-    String[] cities = new String[]{"Bucharest", "Craiova", "Brasov"};
+    String[] cities = new String[]{"Bucharest", "Craiova", "Brasov","Suceava"};
     private JComboBox<String> mCitiesList = new JComboBox<String>(cities);
 
     private WeatherModel mModel;

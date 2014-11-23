@@ -1,5 +1,6 @@
 package com.packet.controllers;
 
+import com.packet.exceptions.InternetException;
 import com.packet.interfaces.IController;
 import com.packet.interfaces.IView;
 import com.packet.model.WeatherModel;
@@ -76,6 +77,7 @@ public class WeatherController implements IController {
             try {
                 String location = "?q=" + cityName + ",ro";
                 String data = (new WeatherHttpClient()).getWeatherData(location);
+
                 HashMap<String, Object> hashMap = new HashMap<String, Object>((new JSONWeatherParser()).getWeather(data));
                 String temp = String.valueOf(hashMap.get("temperature"));
                 String windSpeed = String.valueOf(hashMap.get("windSpeed"));
@@ -85,6 +87,9 @@ public class WeatherController implements IController {
                 notifyViews(true, ec.getMessage());
             } catch (JSONException jsonEx) {
                 notifyViews(true, jsonEx.getMessage());
+            }
+            catch (InternetException iE){
+                notifyViews(true, iE.getMessage());
             }
         } else if (e.getActionCommand().equals(ACTION_UPDATE_CITY)) {
             try {

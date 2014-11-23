@@ -1,5 +1,7 @@
 package com.packet.utils;
 
+import com.packet.exceptions.InternetException;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,7 +23,7 @@ public class WeatherHttpClient {
      * @param location This indicate the city and the country (ex.format : "?q=Bucharest,ro")
      * @return
      */
-    public String getWeatherData(String location) {
+    public String getWeatherData(String location) throws InternetException{
         HttpURLConnection con = null;
         InputStream is = null;
 
@@ -43,19 +45,7 @@ public class WeatherHttpClient {
             con.disconnect();
             return buffer.toString();
         } catch (Throwable t) {
-            t.printStackTrace();
-        } finally {
-            try {
-                is.close();
-            } catch (Throwable t) {
-
-            }
-            try {
-                con.disconnect();
-            } catch (Throwable t) {
-
-            }
+           throw new InternetException("No internet connection",t.getMessage());
         }
-        return null;
     }
 }
