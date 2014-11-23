@@ -9,8 +9,7 @@ import com.packet.views.WeatherView;
  * This is the Main class that represents the entry point to our program
  */
 public class WeatherMain {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         //Instantiate the MVC elements
         WeatherModel model = new WeatherModel();
         WeatherView view = new WeatherView();

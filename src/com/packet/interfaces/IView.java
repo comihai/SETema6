@@ -2,7 +2,7 @@ package com.packet.interfaces;
 
 /**
  * Created by mihai on 11/22/2014.
- *
+ * <p/>
  * All the views should implement this interface in order for the cntroller to know how to interact
  */
 public interface IView {

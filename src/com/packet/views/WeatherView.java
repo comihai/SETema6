@@ -11,7 +11,7 @@ import java.awt.*;
 /**
  * Created by mihai on 11/22/2014.
  */
-public class WeatherView extends JFrame implements IModelListener, IView{
+public class WeatherView extends JFrame implements IModelListener, IView {
 
     private static final long serialVersionUID = -5758555454500685115L;
 
@@ -24,7 +24,7 @@ public class WeatherView extends JFrame implements IModelListener, IView{
     private JTextField mWindReal = new JTextField(5);
     private JButton randomUpdate = new JButton("Random Update");
     private JButton realUpdate = new JButton("Real Update");
-    String[] cities = new String[] {"Bucharest","Craiova","Brasov"};
+    String[] cities = new String[]{"Bucharest", "Craiova", "Brasov"};
     private JComboBox<String> mCitiesList = new JComboBox<String>(cities);
 
     private WeatherModel mModel;
@@ -42,7 +42,7 @@ public class WeatherView extends JFrame implements IModelListener, IView{
          * Layout the components
          */
         JPanel content = new JPanel();
-        content.setPreferredSize(new Dimension(600,70));
+        content.setPreferredSize(new Dimension(600, 70));
         content.setLayout(new FlowLayout());
         content.add(mCitiesList);
         content.add(randomUpdate);
@@ -70,10 +70,10 @@ public class WeatherView extends JFrame implements IModelListener, IView{
 
     /**
      * sets the view's reference to the model - only get operations
+     *
      * @param model
      */
-    public void addModel(WeatherModel model)
-    {
+    public void addModel(WeatherModel model) {
         mModel = model;
         mTemp.setText(model.getTemp());
         mWind.setText(model.getWindSpeed());
@@ -86,8 +86,7 @@ public class WeatherView extends JFrame implements IModelListener, IView{
      *
      * @param controller The controller (event listener)
      */
-    public void addController(IController controller)
-    {
+    public void addController(IController controller) {
         randomUpdate.setActionCommand(IController.ACTION_UPDATE_RANDOM);
         randomUpdate.addActionListener(controller);
 
@@ -108,15 +107,13 @@ public class WeatherView extends JFrame implements IModelListener, IView{
 
     @Override
     public void onMessage(boolean isError, String message) {
-        if(isError)
-        {
+        if (isError) {
             JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else
-        {
+        } else {
             JOptionPane.showMessageDialog(this, message, "Weather MVC", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+
     @Override
     public void setResizable(boolean resizable) {
         super.setResizable(resizable);

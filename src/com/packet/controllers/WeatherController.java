@@ -36,10 +36,11 @@ public class WeatherController implements IController {
      * Local variabiles used for obtain values
      */
     private Random randomGenerator = new Random();
-    private String cityName="Bucharest";
+    private String cityName = "Bucharest";
 
     /**
      * return city name
+     *
      * @return
      */
     public String getCityName() {
@@ -48,6 +49,7 @@ public class WeatherController implements IController {
 
     /**
      * set the name of the city used in api url to get real time for state of weather
+     *
      * @param cityName
      */
     public void setCityName(String cityName) {
@@ -66,41 +68,34 @@ public class WeatherController implements IController {
 
         if (e.getActionCommand().equals(ACTION_UPDATE_RANDOM)) {
             try {
-                  makeOperation("random",null,null);
+                makeOperation("random", null, null);
             } catch (ClassCastException ec) {
-               notifyViews(true, ec.getMessage());
+                notifyViews(true, ec.getMessage());
+            }
+        } else if (e.getActionCommand().equals(ACTION_UPDATE_REAL)) {
+            try {
+                String location = "?q=" + cityName + ",ro";
+                String data = (new WeatherHttpClient()).getWeatherData(location);
+                HashMap<String, Object> hashMap = new HashMap<String, Object>((new JSONWeatherParser()).getWeather(data));
+                String temp = String.valueOf(hashMap.get("temperature"));
+                String windSpeed = String.valueOf(hashMap.get("windSpeed"));
+                ;
+                makeOperation("real", temp, windSpeed);
+            } catch (ClassCastException ec) {
+                notifyViews(true, ec.getMessage());
+            } catch (JSONException jsonEx) {
+                notifyViews(true, jsonEx.getMessage());
+            }
+        } else if (e.getActionCommand().equals(ACTION_UPDATE_CITY)) {
+            try {
+                JComboBox cb = (JComboBox) e.getSource();
+                String cityName = (String) cb.getSelectedItem();
+                System.out.println("Numele orasului este : " + cityName + ".\n");
+                setCityName(cityName);
+            } catch (ClassCastException ec) {
+                notifyViews(true, ec.getMessage());
             }
         }
-        else
-            if(e.getActionCommand().equals(ACTION_UPDATE_REAL)){
-                try {
-                    String location = "?q="+cityName+",ro";
-                    String data = (new WeatherHttpClient()).getWeatherData(location);
-                    HashMap<String, Object> hashMap = new HashMap<String, Object>((new JSONWeatherParser()).getWeather(data));
-                    String temp = String.valueOf(hashMap.get("temperature"));
-                    String windSpeed = String.valueOf(hashMap.get("windSpeed"));;
-                    makeOperation("real",temp,windSpeed);
-                }
-                catch (ClassCastException ec){
-                    notifyViews(true, ec.getMessage());
-                }
-                catch (JSONException jsonEx)
-                {
-                    notifyViews(true,jsonEx.getMessage());
-                }
-            }
-        else
-                if(e.getActionCommand().equals(ACTION_UPDATE_CITY)){
-                    try {
-                        JComboBox cb = (JComboBox) e.getSource();
-                        String cityName = (String) cb.getSelectedItem();
-                        System.out.println("Numele orasului este : "+cityName+".\n");
-                        setCityName(cityName);
-                    }catch (ClassCastException ec)
-                    {
-                        notifyViews(true, ec.getMessage());
-                    }
-                }
     }
 
     /**
@@ -140,18 +135,18 @@ public class WeatherController implements IController {
 
     /**
      * Update the current value for temperature and wind speed
+     *
      * @param s If value is "random" will set random values, otherwise real values
      */
     private void makeOperation(String s, String t, String w) {
         if (mModel != null) {
 
-            if(s.equalsIgnoreCase("random")==true) {
+            if (s.equalsIgnoreCase("random") == true) {
                 String temp = String.valueOf(randomGenerator.nextInt(40) + "." + randomGenerator.nextInt(9));
                 String windSpeed = String.valueOf(randomGenerator.nextInt(20) + "." + randomGenerator.nextInt(9));
                 mModel.setTemp(temp);
                 mModel.setWindSpeed(windSpeed);
-            }
-            else if(s.equalsIgnoreCase("real")==true){
+            } else if (s.equalsIgnoreCase("real") == true) {
                 mModel.setTempReal(t);
                 mModel.setWindSpeedReal(w);
             }

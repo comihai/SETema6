@@ -8,7 +8,7 @@ import java.net.URL;
 
 /**
  * Created by mihai on 11/23/2014.
- *
+ * <p/>
  * This class is used for receiving real time data from openweathermap.org
  */
 public class WeatherHttpClient {
@@ -21,14 +21,12 @@ public class WeatherHttpClient {
      * @param location This indicate the city and the country (ex.format : "?q=Bucharest,ro")
      * @return
      */
-    public String getWeatherData(String location)
-    {
+    public String getWeatherData(String location) {
         HttpURLConnection con = null;
         InputStream is = null;
 
-        try
-        {
-            con = (HttpURLConnection)(new URL(BASE_URL + location)).openConnection();
+        try {
+            con = (HttpURLConnection) (new URL(BASE_URL + location)).openConnection();
             con.setRequestMethod("GET");
             con.setDoInput(true);
             con.setDoOutput(true);
@@ -38,19 +36,15 @@ public class WeatherHttpClient {
             is = con.getInputStream();
             BufferedReader rBuffer = new BufferedReader(new InputStreamReader(is));
             String line = null;
-            while ((line = rBuffer.readLine()) != null)
-            {
-                buffer.append(line+"\r\n");
+            while ((line = rBuffer.readLine()) != null) {
+                buffer.append(line + "\r\n");
             }
             is.close();
             con.disconnect();
             return buffer.toString();
-        }
-        catch (Throwable t)
-        {
+        } catch (Throwable t) {
             t.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 is.close();
             } catch (Throwable t) {
