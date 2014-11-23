@@ -20,7 +20,10 @@ public class WeatherView extends JFrame implements IModelListener, IView{
      */
     private JTextField mTemp = new JTextField(5);
     private JTextField mWind = new JTextField(5);
+    private JTextField mTempReal = new JTextField(5);
+    private JTextField mWindReal = new JTextField(5);
     private JButton randomUpdate = new JButton("Random Update");
+    private JButton realUpdate = new JButton("Real Update");
     String[] cities = new String[] {"Bucharest","Craiova","Brasov"};
     private JComboBox<String> mCitiesList = new JComboBox<String>(cities);
 
@@ -33,20 +36,30 @@ public class WeatherView extends JFrame implements IModelListener, IView{
     public WeatherView() {
         mTemp.setEditable(false);
         mWind.setEditable(false);
+        mTempReal.setEditable(false);
+        mWindReal.setEditable(false);
 
         /**
          * Layout the components
          */
         JPanel content = new JPanel();
+        content.setPreferredSize(new Dimension(600,70));
         content.setLayout(new FlowLayout());
         content.add(mCitiesList);
         content.add(randomUpdate);
         content.add(new JLabel("Temperature : "));
         content.add(mTemp);
-        content.add(new JLabel("°C       Wind Speed : "));
+        content.add(new JLabel("°C      Wind Speed : "));
         content.add(mWind);
         content.add(new JLabel("m/s"));
-        //content.setLayout(new BoxLayout(content,BoxLayout.Y_AXIS));
+        content.add(new JLabel("                             "));
+        content.add(realUpdate);
+        content.add(new JLabel("       Temperature : "));
+        content.add(mTempReal);
+        content.add(new JLabel("°C      Wind Speed : "));
+        content.add(mWindReal);
+        content.add(new JLabel("m/s"));
+
 
         // Finalize layout
         this.setContentPane(content);
