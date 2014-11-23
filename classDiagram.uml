@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.packet</OriginalElement>
+  <nodes>
+    <node x="1309.5020833333333" y="277.5">com.packet.utils.WeatherHttpClient</node>
+    <node x="0.0" y="578.0">com.packet.views.WeatherView</node>
+    <node x="122.62916666666672" y="0.0">com.packet.interfaces.IModelListener</node>
+    <node x="932.5020833333333" y="313.5">com.packet.interfaces.IController</node>
+    <node x="685.5020833333333" y="289.0">com.packet.interfaces.IView</node>
+    <node x="157.50208333333342" y="101.0">com.packet.model.WeatherModel</node>
+    <node x="954.5020833333333" y="267.0">com.packet.utils.JSONWeatherParser</node>
+    <node x="763.2750000000001" y="622.0">com.packet.controllers.WeatherController</node>
+    <node x="1277.5020833333333" y="0.0">com.packet.exceptions.InternetException</node>
+    <node x="371.8354166666667" y="1011.0">com.packet.WeatherMain</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.packet.controllers.WeatherController" target="com.packet.utils.JSONWeatherParser">
+      <point x="79.79999999999995" y="-147.5" />
+      <point x="1042.575" y="548.0" />
+      <point x="1122.0020833333333" y="548.0" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="com.packet.WeatherMain" target="com.packet.model.WeatherModel">
+      <point x="0.0" y="-25.5" />
+      <point x="448.3354166666667" y="986.0" />
+      <point x="475.5" y="986.0" />
+      <point x="475.5" y="548.0" />
+      <point x="411.5020833333334" y="548.0" />
+      <point x="0.0" y="213.5" />
+    </edge>
+    <edge source="com.packet.utils.WeatherHttpClient" target="com.packet.exceptions.InternetException">
+      <point x="0.0" y="-37.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.packet.controllers.WeatherController" target="com.packet.model.WeatherModel">
+      <point x="-159.60000000000014" y="-147.5" />
+      <point x="803.175" y="548.0" />
+      <point x="580.8354166666668" y="548.0" />
+      <point x="169.33333333333337" y="213.5" />
+    </edge>
+    <edge source="com.packet.WeatherMain" target="com.packet.controllers.WeatherController">
+      <point x="51.0" y="-25.5" />
+      <point x="499.3354166666667" y="986.0" />
+      <point x="962.7750000000001" y="986.0" />
+      <point x="0.0" y="147.5" />
+    </edge>
+    <edge source="com.packet.views.WeatherView" target="com.packet.interfaces.IModelListener">
+      <point x="-155.0" y="-191.5" />
+      <point x="77.5" y="558.0" />
+      <point x="107.41666666666663" y="558.0" />
+      <point x="107.41666666666663" y="76.0" />
+      <point x="157.37916666666672" y="76.0" />
+      <point x="-34.75" y="25.5" />
+    </edge>
+    <edge source="com.packet.views.WeatherView" target="com.packet.model.WeatherModel">
+      <point x="0.0" y="-191.5" />
+      <point x="232.5" y="558.0" />
+      <point x="242.16875000000005" y="558.0" />
+      <point x="-169.33333333333334" y="213.5" />
+    </edge>
+    <edge source="com.packet.views.WeatherView" target="com.packet.interfaces.IView">
+      <point x="155.0" y="-191.5" />
+      <point x="387.5" y="558.0" />
+      <point x="742.2520833333333" y="558.0" />
+      <point x="-56.75" y="25.5" />
+    </edge>
+    <edge source="com.packet.controllers.WeatherController" target="com.packet.interfaces.IController">
+      <point x="0.0" y="-147.5" />
+      <point x="962.7750000000001" y="558.0" />
+      <point x="933.5020833333333" y="558.0" />
+      <point x="0.0" y="1.0" />
+    </edge>
+    <edge source="com.packet.controllers.WeatherController" target="com.packet.interfaces.IView">
+      <point x="-79.80000000000007" y="-147.5" />
+      <point x="882.9749999999999" y="558.0" />
+      <point x="855.7520833333333" y="558.0" />
+      <point x="56.75" y="25.5" />
+    </edge>
+    <edge source="com.packet.model.WeatherModel" target="com.packet.interfaces.IModelListener">
+      <point x="0.0" y="-213.5" />
+      <point x="411.5020833333334" y="76.0" />
+      <point x="226.87916666666672" y="76.0" />
+      <point x="34.75" y="25.5" />
+    </edge>
+    <edge source="com.packet.WeatherMain" target="com.packet.views.WeatherView">
+      <point x="-51.0" y="-25.5" />
+      <point x="397.3354166666667" y="986.0" />
+      <point x="232.5" y="986.0" />
+      <point x="0.0" y="191.5" />
+    </edge>
+    <edge source="com.packet.controllers.WeatherController" target="com.packet.utils.WeatherHttpClient">
+      <point x="159.5999999999999" y="-147.5" />
+      <point x="1122.375" y="558.0" />
+      <point x="1389.5020833333333" y="558.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5959264126149802" x="751.0" y="551.8379272326351" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
